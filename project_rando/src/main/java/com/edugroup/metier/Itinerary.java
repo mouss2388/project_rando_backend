@@ -8,8 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,6 +31,11 @@ public class Itinerary {
 	private String creator;
 	@OneToMany( mappedBy = "itinerary")
 	private Set<Location> locations;
+	
+	
+	@OneToOne( mappedBy = "mapItinerary")
+	@JsonIgnore
+	private Hike hikes;
 
 	
 	public Itinerary(int id, LocalDateTime creationDate, LocalDateTime updateDate, String creator) {
