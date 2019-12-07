@@ -7,8 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
@@ -28,28 +28,41 @@ public class Itinerary {
 	
 	private LocalDateTime creationDate;
 	private LocalDateTime updateDate;
-	private String creator;
-	@OneToMany( mappedBy = "itinerary")
+	@OneToMany(mappedBy = "itinerary")
 	private Set<Location> locations;
+	private String creator;
+	private double length;
+	private int difficulty;
 	
 	
-	@OneToOne( mappedBy = "mapItinerary")
+	@ManyToOne
 	@JsonIgnore
-	private Hike hikes;
+	private Hike hike;
 
 	
-	public Itinerary(int id, LocalDateTime creationDate, LocalDateTime updateDate, String creator) {
+	public Itinerary(int id, LocalDateTime creationDate, LocalDateTime updateDate, String creator, double length,
+			int difficulty) {
 		super();
 		this.id = id;
 		this.creationDate = creationDate;
 		this.updateDate = updateDate;
 		this.creator = creator;
+		this.length = length;
+		this.difficulty = difficulty;
 	}
+	
+	
+	
 	
 	@PrePersist
 	private void createItinerary() {
 		setCreationDate(LocalDateTime.now());
 	}
+
+
+
+
+	
 
 	
 
