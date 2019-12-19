@@ -20,7 +20,7 @@ import com.edugroup.metier.Location;
 import com.edugroup.repositories.ItineraryRepository;
 
 @Controller
-@RequestMapping("/list-of-itineraries")
+@RequestMapping("/itineraries")
 @CrossOrigin("http://localhost:4200")
 public class ItineraryController {
 

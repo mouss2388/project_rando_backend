@@ -21,7 +21,7 @@ import com.edugroup.repositories.HikeRepository;
 import com.edugroup.repositories.ItineraryRepository;
 
 @Controller
-@RequestMapping("/list-of-hikes")
+@RequestMapping("/hikes")
 @CrossOrigin("http://localhost:4200")
 public class HikeController {
 

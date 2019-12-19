@@ -19,7 +19,7 @@ import com.edugroup.metier.Location;
 import com.edugroup.repositories.LocationRepository;
 
 @Controller
-@RequestMapping("/list-of-locations")
+@RequestMapping("/locations")
 @CrossOrigin("http://localhost:4200")
 public class LocationController {
 	@Autowired
