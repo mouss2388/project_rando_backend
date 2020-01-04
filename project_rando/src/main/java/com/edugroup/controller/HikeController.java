@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -43,6 +44,17 @@ public class HikeController {
 								.orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 	
+	@PutMapping(value="",
+			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
+			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseBody
+	public ResponseEntity<Hike> updateHike(
+								@RequestBody Hike hike) {
+		if(hike.getId()==0)
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		hike = hikeRepository.save(hike);
+		return new ResponseEntity<Hike>(hike, HttpStatus.ACCEPTED);
+	}
 	
 	@PostMapping(value="/insert",
 			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
