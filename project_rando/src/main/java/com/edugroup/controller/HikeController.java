@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +34,15 @@ public class HikeController {
 	public Page<Hike> findAll(@PageableDefault(page = 0, size = 8) Pageable page){
 		return hikeRepository.findAll(page);
 	}
+	
+	@GetMapping(value = "/hike-detail/{id:[0-9]+}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseBody
+	public ResponseEntity<Hike> findById(@PathVariable("id") int id) {
+		return hikeRepository.findById(id)
+								.map(h -> new ResponseEntity<>(h, HttpStatus.OK))
+								.orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+	}
+	
 	
 	@PostMapping(value="/insert",
 			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
