@@ -31,6 +31,9 @@ public class Hike {
 	@OneToMany(mappedBy = "hike")
 	private Set<Itinerary> itinaries;
 	
+	@OneToMany(mappedBy = "hike")
+	private Set<Image> images;
+	
 	private int note;
 
 }

@@ -17,17 +17,17 @@ import lombok.Setter;
 @Entity
 public class Image {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)		private int id;
-																private String nom;
+																private String name;
 																private String fileName;
 																private String contentType;
 	@JsonIgnore													private String storageId;
 	@JsonIgnore													private String thumbStorageId;
 	@ManyToOne @JsonIgnore										private Hike hike;
 	
-	public Image(int id, String nom, String fileName, String contentType, String storageId, String thumbStorageId) {
+	public Image(int id, String name, String fileName, String contentType, String storageId, String thumbStorageId) {
 		super();
 		this.id = id;
-		this.nom = nom;
+		this.name = name;
 		this.fileName = fileName;
 		this.contentType = contentType;
 		this.storageId = storageId;

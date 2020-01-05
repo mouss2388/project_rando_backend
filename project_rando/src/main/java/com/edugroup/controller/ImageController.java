@@ -46,7 +46,8 @@ public class ImageController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		try {
 			Image img = new Image(0,
-					file.getOriginalFilename(),
+					
+					file.getOriginalFilename().substring(0, file.getOriginalFilename().lastIndexOf('.')),
 					file.getOriginalFilename(),
 					file.getContentType(),
 					"",
